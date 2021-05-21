@@ -20,8 +20,8 @@ const errorCodes = [
     statusCode: 400,
   },
   {
-    nameCode: 'TextIsEmpty',
-    messageCode: 'Text không được để trống',
+    nameCode: 'DescriptionIsEmpty',
+    messageCode: 'Description không được để trống',
     returnCode: 4,
     statusCode: 400,
   },
@@ -38,7 +38,7 @@ const errorCodes = [
     statusCode: 400,
   },
   {
-    nameCode: 'TextHasSpace',
+    nameCode: 'DescriptionHasSpace',
     messageCode: 'Vui lòng không nhập khoảng trống cho nội dung',
     returnCode: 7,
     statusCode: 400,
@@ -62,7 +62,7 @@ const errorCodes = [
     statusCode: 400,
   },
   {
-    nameCode: 'TextIsOverLength',
+    nameCode: 'DescriptionIsOverLength',
     messageCode: 'Nội dung không vượt quá 1000 kí tự',
     returnCode: 11,
     statusCode: 400,

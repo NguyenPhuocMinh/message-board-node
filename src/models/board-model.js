@@ -8,7 +8,7 @@ const BoardSchema = new Schema({
   registerDate: { type: Date },
   title: { type: String },
   name: { type: String },
-  text: { type: String },
+  description: { type: String },
   //filter
   deleted: { type: Boolean, default: false },
 });

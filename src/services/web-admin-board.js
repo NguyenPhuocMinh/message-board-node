@@ -52,6 +52,8 @@ function BoardService() {
       const skip = parseInt(params._start) || 0;
       let limit = parseInt(params._end) || 1000;
       limit = limit - skip;
+      console.log("🚀 ~ file: web-admin-board.js ~ line 53 ~ skip", skip)
+      console.log("🚀 ~ file: web-admin-board.js ~ line 56 ~ limit", limit)
 
       const boards = await dataStore.find({
         type: 'BoardModel',
@@ -129,7 +131,7 @@ async function validateAndSanitizeArgs(args) {
   const registerDate = get(args, 'registerDate');
   const title = get(args, 'title');
   const name = get(args, 'name');
-  const text = get(args, 'text');
+  const description = get(args, 'description');
 
   if (isEmpty(registerDate?.toString())) {
     return Promise.reject(returnCodes(errorCodes, 'DateIsEmpty'))
@@ -157,21 +159,21 @@ async function validateAndSanitizeArgs(args) {
     }
   }
 
-  if (isEmpty(text)) {
-    return Promise.reject(returnCodes(errorCodes, 'TextIsEmpty'));
+  if (isEmpty(description)) {
+    return Promise.reject(returnCodes(errorCodes, 'DescriptionIsEmpty'));
   } else {
-    if (isEmpty(text.trim())) {
-      return Promise.reject(returnCodes(errorCodes, 'TextHasSpace'));
+    if (isEmpty(description.trim())) {
+      return Promise.reject(returnCodes(errorCodes, 'DescriptionHasSpace'));
     }
-    if (text.length > 1000) {
-      return Promise.reject(returnCodes(errorCodes, 'TextIsOverLength'));
+    if (description.length > 1000) {
+      return Promise.reject(returnCodes(errorCodes, 'DescriptionIsOverLength'));
     }
   }
 
   assign(args, {
     title: title.trim(),
     name: name.trim(),
-    text: text.trim(),
+    description: description.trim(),
   })
 
   return args;
@@ -191,7 +193,7 @@ function convertDataBoard(board, index) {
     response.registerDate = board.registerDate;
     response.title = board.title;
     response.name = board.name;
-    response.text = board.text;
+    response.description = board.description;
     response.index = index;
 
     delete board._id;
